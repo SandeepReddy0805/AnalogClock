@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog - Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-300 flex flex-col items-center">
+    <h1 class="text-center font-bold text-2xl my-3">Indian Standard Time</h1>
+    <img src="clock.png" alt="clock" class="w-72">
+    <div id="minutes" class="w-1 h-28 relative bottom-[200px]"><div class="h-1/2 bg-black rounded-full"></div><div  class="h-1/2"></div></div>
+    <div id="hours" class="w-2 h-24 relative bottom-[300px]"><div class="h-1/2 bg-black rounded-full"></div><div  class="h-1/2"></div></div>
+    <div id="seconds" class="w-0.5 h-36  relative bottom-[420px]"><div class="h-1/2 bg-black rounded-full"></div><div  class="h-1/2"></div></div>
+    <div class="w-4 h-4 rounded-full bg-black relative bottom-[500px]"></div>
+    <script>
+        let date = new Date;
+        let minutes = date.getMinutes()
+        let hours = date.getHours()
+        let seconds = date.getSeconds()
+        document.getElementById('minutes').style.transform = `rotate(${minutes*6}deg)`;
+        document.getElementById('hours').style.transform = `rotate(${(hours*30 + minutes/2)}deg)`;
+        document.getElementById('seconds').style.transform = `rotate(${seconds*6}deg)`;
+        setInterval(()=>{
+            date = new Date;
+            minutes = date.getMinutes();
+            hours = date.getHours();
+            seconds = date.getSeconds();
+        },1000)
+        setInterval(()=>{
+            document.getElementById('minutes').style.transform = `rotate(${minutes*6}deg)`;
+        },60000)
+        setInterval(()=>{
+            document.getElementById('hours').style.transform = `rotate(${(hours*30 + minutes/2)}deg)`;
+        },60000)
+        setInterval(()=>{
+            document.getElementById('seconds').style.transform = `rotate(${seconds*6}deg)`;
+        },1000)
+        </script>
+</body>
+</html>
